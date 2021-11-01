@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myproject.myapp.dao.Dao">
+
+ <!-- select 결과를 매핑하는 설정 -->
+	<resultMap id="boardListResult"
+              type="com.myproject.myapp.domain.Board">
+      <id column="idx" property="idx" />
+      <result column="title" property="title" />
+      <result column="content" property="content" />
+      <result column="writer" property="writer" />
+      <result column="password" property="password" />
+      <result column="insert_time" property="insert_time" />
+   </resultMap>
+   
+   
+   
+   
+   <!-- 전체 게시판 리스트 -->
+   	<select id="selectBoardList" resultMap="boardListResult">
+		SELECT
+			*
+		FROM
+			board
+		ORDER BY
+			idx DESC,
+			insert_time DESC
+	</select>
+   
+   
+   <!-- 게시글 등록 -->
+   	<insert id="insertBoard" parameterType="com.myproject.myapp.domain.Board"
+   	 		useGeneratedKeys="true"
+           	keyProperty="idx">
+		INSERT INTO board (title, content, writer,password) 
+		VALUES (${title},${content},${writer},${password});
+	</insert>
+   
+   <!-- 게시글 수정 -->
+   <update id="updateBoard" parameterType="com.myproject.myapp.domain.Board">
+		UPDATE board
+		SET
+			 title = #{title}
+			, content = #{content}
+			, writer = #{writer}
+			, password = #{password}
+		WHERE
+			idx = #{idx}
+	</update>
+   
+	<!-- 게시글 삭제 -->   
+	<delete id="deleteBoard" parameterType="long">
+		DELETE FROM board
+		WHERE
+			idx = #{idx}
+	</delete>
+  
+   
+   <!-- 댓글 -->
+  <!-- select 결과를 매핑하는 설정 -->
+	<resultMap id="commentListResult"
+              type="com.myproject.myapp.domain.Comment">
+      <id column="comIdx" property="comIdx" />
+      <result column="comContent" property="comContent" />
+      <result column="comWriter" property="comWriter" />
+      <result column="comDate" property="comDate" />
+      <result column="idx" property="idx" />
+   </resultMap> 
+   
+    <!--댓글 리스트 -->
+   	<select id="selectCommentList" resultMap="commentListResult">
+		SELECT
+			comContent,comWriter,comDate
+		FROM
+			comment
+		ORDER BY
+			comIdx DESC,
+			comDate DESC
+	</select>
+   
+    <!-- 댓글 등록 -->
+   	<insert id="insertComment" parameterType="com.myproject.myapp.domain.Comment"
+   	 		useGeneratedKeys="true"
+           	keyProperty="comIdx">
+		INSERT INTO comment (comContent, comWriter, idx) 
+		VALUES (${comContent},${comWriter},${idx});
+	</insert>
+   
+   <!-- 댓글 수정 -->
+   <update id="updateComment" parameterType="com.myproject.myapp.domain.Comment">
+		UPDATE comment
+		SET
+			 comContent = #{comContent}
+			, comWriter = #{comWriter}
+		WHERE
+			comIdx = #{comIdx}
+	</update>
+   
+	<!-- 댓글 삭제 -->   
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM comment
+		WHERE
+			comIdx = #{comIdx}
+	</delete>
+   
+   
+   
+</mapper>

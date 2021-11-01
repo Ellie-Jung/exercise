@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.Dao"></mapper>
+
+
+	<sql id="boardColumns">
+		  idx
+		, title
+		, content
+		, writer
+		, password
+		, view_cnt
+		, insert_time
+	</sql>
+
+	<insert id="insertBoard" parameterType="BoardDTO">
+		INSERT INTO board (
+			<include refid="boardColumns" />
+		) VALUES (
+			  #{idx}
+			, #{title}
+			, #{content}
+			, #{writer}
+			, #{password}
+			, 0
+			, NOW()
+		)
+	</insert>
+
+	<select id="selectBoardDetail" parameterType="long" resultType="BoardDTO">
+		SELECT
+			<include refid="boardColumns" />
+		FROM
+			board
+		WHERE
+			idx = #{idx}
+	</select>
+
+	<update id="updateBoard" parameterType="BoardDTO">
+		UPDATE board
+		SET
+			 title = #{title}
+			, content = #{content}
+			, writer = #{writer}
+			, password = #{password}
+		WHERE
+			idx = #{idx}
+	</update>
+
+	<delete id="deleteBoard" parameterType="long">
+		DELETE FROM board
+		WHERE
+			idx = #{idx}
+	</delete>
+
+
+ <resultMap id="boardListResult"
+              type="com.example.demo.domain.BoardDTO">
+      <id column="idx" property="idx" />
+      <result column="title" property="title" />
+      <result column="content" property="content" />
+      <result column="writer" property="writer" />
+      <result column="password" property="password" />
+      <result column="view_cnt" property="view_cnt" />
+      <result column="insert_time" property="insert_time" />
+   </resultMap>
+
+
+
+	<select id="selectBoardList" resultMap="boardListResult">
+		SELECT
+			*
+		FROM
+			board
+		ORDER BY
+			idx DESC,
+			insert_time DESC
+	</select>
+
+	<select id="selectBoardTotalCount" parameterType="BoardDTO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			board
+		
+	</select>
+
+</mapper>
