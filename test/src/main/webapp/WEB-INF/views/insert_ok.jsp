@@ -9,12 +9,12 @@
 <c:if test="${result>0}">
 	<script>
 		alert('등록되었습니다.');
-		location.href = '<c:url value="/index"/>';
+		location.href = '<c:url value="/board"/>';
 	</script>
 </c:if>
 <c:if test="${result eq 0}">
 	<script>
-		alert('아이디 중복 여부를 확인해주세요. \n입력페이지로 다시 이동합니다.');
+		alert('등록실패. \n입력페이지로 다시 이동합니다.');
 		window.history.go(-1);
 	</script>
 </c:if>

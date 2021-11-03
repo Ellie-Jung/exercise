@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,8 @@ h1 {
 			<h1>스프링 게시판</h1>
 			<table class="table">
 				<tr>
-					<td><a href="#" class="btn btn-sm btn-primary">새글</a>
+				
+					<td><a href="<c:url value='/board/reg'/>" class="btn btn-sm btn-primary">새글</a>
 					</td>
 				</tr>
 			</table>
@@ -41,12 +41,12 @@ h1 {
 				</tr>
 				<c:forEach var="list" items="${list}">
 					<tr>
-						<td class="text-center" width=10%>${list.idx }</td>
+						<td class="text-center" width=10%>${list.idx}</td>
 						<td class="text-left" width=45%><a
-							href="#">${list.title }</a></td>
-						<td class="text-center" width=15%>${list.writer }</td>
-						<td class="text-center" width=20%><fmt:formatDate
-								value="${list.insert_time}" pattern="yyyy-MM-dd" /></td>
+							href="<c:url value='/board/detail?idx=${list.idx}'/>">${list.title}</a></td>
+						<td class="text-center" width=15%>${list.writer}</td>
+						<td class="text-center" width=20%>
+								${list.insert_time}</td>
 					</tr>
 				</c:forEach>
 			</table>

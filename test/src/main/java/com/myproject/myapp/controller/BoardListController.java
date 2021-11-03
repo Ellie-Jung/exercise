@@ -24,7 +24,7 @@ public class BoardListController {
 		
 		list=service.getBoardList();
 		
-		model.addAttribute("boardList", list);
+		model.addAttribute("list", list);
 		
 		return "list";
 	}

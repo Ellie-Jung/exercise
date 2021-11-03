@@ -7,6 +7,16 @@ public class BoardRequest {
     private String writer;
     private String password;
     
+    public BoardRequest() {
+	}
+    
+	public BoardRequest(String title, String content, String writer, String password) {
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.password = password;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -32,6 +42,7 @@ public class BoardRequest {
 		this.password = password;
 	}
     
+	
     
     
 }

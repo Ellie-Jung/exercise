@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,26 +46,22 @@ $(function(){
       <table class="table table-striped">
         <tr>
           <th width=20% class="text-center danger">번호</th>
-          <td width=30% class="text-center">${vo.boardnumber }</td>
+          <td width=30% class="text-center">${board.idx}</td>
           <th width=20% class="text-center danger">작성일</th>
-          <td width=30% class="text-center"> 
-            <fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/>
-          </td>
+          <td width=30% class="text-center"> ${board.insert_time}</td>
         </tr>
         <tr>
           <th width=20% class="text-center danger">이름</th>
-          <td width=30% class="text-center">${vo.name }</td>
-          <th width=20% class="text-center danger">조회수</th>
-          <td width=30% class="text-center">${vo.hit }</td>
+          <td width=30% class="text-center">${board.writer }</td>
         </tr>
         <tr>
           <th width=20% class="text-center danger">제목</th>
-          <td colspan="3" class="text-left">${vo.subject }</td>
+          <td colspan="3" class="text-left">${board.title }</td>
         </tr>
         
         <tr>
           <td colspan="4" class="text-left" valign="top" height=200>
-            ${vo.content }
+            ${board.content }
           </td>
         </tr>
         <tr>

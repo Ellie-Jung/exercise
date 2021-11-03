@@ -17,8 +17,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </resultMap>
    
    
-   
-   
    <!-- 전체 게시판 리스트 -->
    	<select id="selectBoardList" resultMap="boardListResult">
 		SELECT
@@ -36,8 +34,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	 		useGeneratedKeys="true"
            	keyProperty="idx">
 		INSERT INTO board (title, content, writer,password) 
-		VALUES (${title},${content},${writer},${password});
+		VALUES (#{title},#{content},#{writer},#{password});
 	</insert>
+	
+	<!-- 게시판 상세페이지 보기 -->
+	<select id="selectBoardDetail" resultType="com.myproject.myapp.domain.Board">
+		SELECT * FROM board where idx=#{idx}
+	</select>
+	
+	
    
    <!-- 게시글 수정 -->
    <update id="updateBoard" parameterType="com.myproject.myapp.domain.Board">

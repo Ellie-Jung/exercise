@@ -12,6 +12,18 @@ public class Board {
     private String password;
     private LocalDateTime insert_time;
     
+    
+    public Board() {
+	}
+    
+	public Board(long idx, String title, String content, String writer, String password, LocalDateTime insert_time) {
+		this.idx = idx;
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.password = password;
+		this.insert_time = insert_time;
+	}
 	public long getIdx() {
 		return idx;
 	}
