@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myproject.myapp.dao.Dao;
+import com.myproject.myapp.domain.Board;
 
 @Service
 public class BoardDeleteService {
@@ -14,11 +15,18 @@ public class BoardDeleteService {
 	@Autowired
 	SqlSessionTemplate template;
 	
-	public int boardDelete(Long idx) {
+	public int boardDelete(Long idx, String password) {
 		
-		
+		int resultCnt=0;
 		dao= template.getMapper(Dao.class);
-		return dao.deleteBoard(idx);
+		
+		Board board = dao.selectBoardDetail(idx);
+		if(board.getPassword().equals(password)) {
+			resultCnt=dao.deleteBoard(idx);
+		}
+		
+		
+		return resultCnt;
 		
 	}
 	

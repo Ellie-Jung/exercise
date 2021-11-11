@@ -69,7 +69,7 @@ $(function(){
          
             <a href="update.do?no=${vo.boardnumber }" class="btn btn-sm btn-success">수정</a>
             <a href= <c:url value='/board/delete?idx=${board.idx}'/> class="btn btn-sm btn-info">삭제</a>
-            <a href="list.do" class="btn btn-sm btn-warning">목록</a>
+            <a href=<c:url value='/board'/> class="btn btn-sm btn-warning">목록</a>
           </td>
         </tr>
       </table>
