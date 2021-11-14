@@ -21,12 +21,12 @@ h1 {
   <div class="container">
     <div class="row">
      <h1>수정하기</h1>
-     <form method=post action="update_ok.do">
+     <form method=post>
      <table class="table">
        <tr>
         <th class="text-right danger" width=15%>이름</th>
         <td width=85%>
-          <input type=text name=name size=15 value="${vo.name }">
+          <input type=text name=writer size=15 value="${board.writer}">
           <input type=hidden name=boardnumber value="${vo.boardnumber }">
         </td>
        </tr>
@@ -34,20 +34,20 @@ h1 {
        <tr>
         <th class="text-right danger" width=15%>제목</th>
         <td width=85%>
-          <input type=text name=subject size=50 value="${vo.subject }">
+          <input type=text name=title size=50 value="${board.title}">
         </td>
        </tr>
        
        <tr>
         <th class="text-right danger" width=15%>내용</th>
         <td width=85%>
-          <textarea rows="8" cols="55" name=content>${vo.content }</textarea>
+          <textarea rows="8" cols="55" name=content>${board.content}</textarea>
         </td>
        </tr>
        <tr>
         <th class="text-right danger" width=15%>비밀번호</th>
         <td width=85%>
-          <input type="password" name=pwd size=10>
+          <input type="password" name=password size=10>
         </td>
        </tr>
        

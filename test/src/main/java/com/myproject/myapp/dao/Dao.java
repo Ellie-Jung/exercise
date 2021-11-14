@@ -8,6 +8,7 @@ import com.myproject.myapp.domain.Comment;
 
 public interface Dao {
 
+	//게시판
 	public int insertBoard(Board board);
 	public Board selectBoardDetail(Long idx);
 	public int updateBoard(Board board);
